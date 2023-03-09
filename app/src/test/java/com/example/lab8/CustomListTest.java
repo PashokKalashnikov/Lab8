@@ -3,10 +3,12 @@ package com.example.lab8;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 //import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -50,6 +52,25 @@ public class CustomListTest {
         assertFalse(list.hasCity(mockSity));
         list.addCity(mockSity);
         assertTrue(list.hasCity(mockSity));
+    }
+
+    /**
+     * Remove a city that is not inside the list
+     * Add a mock city to the list
+     * Remove the mock city from the list*/
+    @Test
+    public void deleteCityTest(){
+        list = MockCityList();
+        City mockSity = new City("Edmonton", "AB");
+
+        assertFalse(list.deleteCity(mockSity));
+        assertFalse(list.hasCity(mockSity));
+
+        list.addCity(mockSity);
+
+        assertTrue(list.hasCity(mockSity));
+        assertTrue(list.deleteCity(mockSity));
+        assertFalse(list.hasCity(mockSity));
     }
 
 }
